@@ -1,0 +1,38 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+utils = { path = "../utils" }
+core = { path = "../core" }
+
+axum = { version = "0.7.5", features = ["http2", "macros", "multipart", "ws", "__private_docs"] }
+axum-extra = { version = "0.9.3", features = ["typed-header"] }
+futures = "0.3.30"
+futures-util = { version = "0.3.30", features = ["sink", "std"] }
+headers = "0.4.0"
+rand = "0.8.5"
+reqwest = { version = "0.12.4", features = ["json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.117"
+tokio = { version = "1.37.0", features = ["full"] }
+tokio-tungstenite = "0.23.0"
+tokio-util = { version = "0.7.11", features = ["io"] }
+tower = { version = "0.4.13", features = ["util"] }
+tower-http = { version = "0.5.2", features = ["fs", "trace"] }
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter", "serde", "json", "serde_json", "time", "tracing-serde", "chrono", "local-time"] }
+listenfd = "1.0.1"
+sqlx = { version = "0.7.4", features = ["postgres", "runtime-tokio", "runtime-async-std", "bigdecimal", "chrono", "rust_decimal"] }
+tklog = "0.0.3"
+chrono = { version = "0.4.38", features = ["serde"] }
+bigdecimal = { version = "0.4.3", features = ["serde"] }
+rust_decimal = { version = "1.35.0", features = ["serde_json"] }
+
+
+[profile.release]
+strip = true
+# strip = "debuginfo"
+lto = true
+opt-level = "z"
